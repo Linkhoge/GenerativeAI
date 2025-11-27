@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <ctime>
+#include <algorithm>
 using namespace std;
 
 // ============================================================
@@ -313,7 +314,7 @@ int main() {
         if (IsKeyDown(KEY_I)) camZoomTarget += 0.02f;
         if (IsKeyDown(KEY_O)) camZoomTarget -= 0.02f;
 
-        camZoomTarget = clamp(camZoomTarget, 0.3f, 3.0f);
+        camZoomTarget = (camZoomTarget < 0.3f) ? 0.3f : (camZoomTarget > 3.0f) ? 3.0f : camZoomTarget;
         camZoom += (camZoomTarget - camZoom) * 0.1f;
 
         // Camera configuration
